@@ -6,6 +6,7 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyC8pW5MdmRBiWAG1qTylTy_6e7FIt8pONI",
   authDomain: "ride-share-501d0.firebaseapp.com",
+  databaseURL: "https://ride-share-501d0-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "ride-share-501d0",
   storageBucket: "ride-share-501d0.firebasestorage.app",
   messagingSenderId: "204567254608",
