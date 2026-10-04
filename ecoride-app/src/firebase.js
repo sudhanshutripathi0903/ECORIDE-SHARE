@@ -2,15 +2,15 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
-// 🔥 Tumhara real config jo tumne daal rakha hai
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDPvZEZLNClyWij4Q7jqikd7LeWCUFzlLw",
-  authDomain: "projectecoride.firebaseapp.com",
-  projectId: "projectecoride",
-  storageBucket: "projectecoride.firebasestorage.app",
-  messagingSenderId: "286002531445",
-  appId: "1:286002531445:web:e8e5434a42a59bc0b3bc3c",
-  measurementId: "G-GD9KX1DVED"
+  apiKey: "AIzaSyC8pW5MdmRBiWAG1qTylTy_6e7FIt8pONI",
+  authDomain: "ride-share-501d0.firebaseapp.com",
+  projectId: "ride-share-501d0",
+  storageBucket: "ride-share-501d0.firebasestorage.app",
+  messagingSenderId: "204567254608",
+  appId: "1:204567254608:web:e5682844147ea16cb96355",
+  measurementId: "G-Y2PDZ80BZ8"
 };
 
 // Initialize Firebase
