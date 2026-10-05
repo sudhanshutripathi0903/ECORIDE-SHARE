@@ -1,0 +1,74 @@
+// ============================================
+// CarpoolGo — Session helper (no modules)
+// ============================================
+
+(function () {
+  'use strict';
+
+  // ---- Get current user from localStorage ----
+  function getCurrentUser() {
+    var raw = localStorage.getItem('carpoolgo_user');
+    if (!raw) return null;
+    try { return JSON.parse(raw); }
+    catch (e) { return null; }
+  }
+
+  // ---- Is logged in? ----
+  function isLoggedIn() {
+    return getCurrentUser() !== null;
+  }
+
+  // ---- Logout ----
+  function logout() {
+    localStorage.removeItem('carpoolgo_user');
+    window.location.href = 'login.html';
+  }
+
+  // ---- Guard: redirect if not logged in ----
+  function requireAuth() {
+    if (!isLoggedIn()) {
+      window.location.href = 'login.html';
+      return false;
+    }
+    return true;
+  }
+
+  // ---- Paint user info into elements with [data-user-phone] ----
+  function paintUserInfo() {
+    var user = getCurrentUser();
+    if (!user) return;
+
+    document.querySelectorAll('[data-user-phone]').forEach(function (el) {
+      el.textContent = user.phone || '';
+    });
+
+    document.querySelectorAll('[data-user-initial]').forEach(function (el) {
+      var phone = user.phone || 'U';
+      el.textContent = phone.slice(-2);
+    });
+
+    // Toggle guest/user visibility
+    document.querySelectorAll('[data-auth="guest"]').forEach(function (el) {
+      el.classList.add('hidden');
+    });
+    document.querySelectorAll('[data-auth="user"]').forEach(function (el) {
+      el.classList.remove('hidden');
+    });
+  }
+
+  // ---- Expose globally ----
+  window.CarpoolGo = {
+    getCurrentUser: getCurrentUser,
+    isLoggedIn: isLoggedIn,
+    logout: logout,
+    requireAuth: requireAuth,
+    paintUserInfo: paintUserInfo
+  };
+
+  // ---- Auto-run on DOM ready ----
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', paintUserInfo);
+  } else {
+    paintUserInfo();
+  }
+})();
